@@ -3,6 +3,12 @@ pipeline {
 
     stages {
 
+      stage('SCA'){
+           steps{
+               sh '/var/jenkins_home/dependency-check/bin/dependency-check.sh --project "PHP-SCA" --scan "libs/"'
+           }
+       }
+
         stage('SonarQube analysis') {
            steps{
                 script {
