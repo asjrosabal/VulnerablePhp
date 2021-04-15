@@ -3,19 +3,12 @@ pipeline {
 
     stages {
 
-      stage('SCA'){
-           steps{
-               sh '/var/jenkins_home/dependency-check/bin/dependency-check.sh --project "PHP-SCA" --scan "libs/"'
-               archiveArtifacts artifacts: 'dependency-check-report.html', onlyIfSuccessful: true
-           }
-       }
-
         stage('SonarQube analysis') {
            steps{
                 script {
                     def scannerHome = tool name: 'SonarQube Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                 withSonarQubeEnv('SonarQube') {
-                  sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=DevSecOps -Dsonar.sources=. -Dsonar.host.url=http://172.17.0.3:9000 -Dsonar.login=b0c43a0794e31d3af8b91462bd11feb3e65e43d2"
+                  sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=DevSecOps -Dsonar.sources=. -Dsonar.host.url=http://172.17.0.3:9000 -Dsonar.login=a166eec5c26b59f28c359f18d759756189c8982f"
                 }
                 }
            }
@@ -36,29 +29,12 @@ pipeline {
   }
 }
 
-stage('Units Test') {
-    steps {
-        echo "=== Starting Units Test ==="
-    }
-}
-
-stage('Coverage Test') {
-    steps {
-          echo "=== Starting Coverage Test ==="
-    }
-}
-
-stage('Docker Image') {
-    steps {
-        echo "=== Creating Docker Image ==="
-    }
-}
-
-stage('Kubernetes Deploy') {
-    steps {
-        echo "=== Deploying Kuberntes ==="
-    }
-}
+ stage('SCA'){
+           steps{
+               sh '/var/jenkins_home/dependency-check/bin/dependency-check.sh --project "PHP-SCA" --scan "libs/"'
+               archiveArtifacts artifacts: 'dependency-check-report.html', onlyIfSuccessful: true
+           }
+       }
 
 stage('CleanWorkspace') {
             steps {
