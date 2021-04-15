@@ -6,6 +6,7 @@ pipeline {
       stage('SCA'){
            steps{
                sh '/var/jenkins_home/dependency-check/bin/dependency-check.sh --project "PHP-SCA" --scan "libs/"'
+               archiveArtifacts artifacts: 'dependency-check-report.html', onlyIfSuccessful: true
            }
        }
 
