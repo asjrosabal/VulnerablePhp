@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/all-in-one-seo-pack.4.1.0.1.zip!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jackson-databind-2.7.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/contact-form-lite.zip!/" />
+      <root url="jar://$PROJECT_DIR$/libs/contact-form-7.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
