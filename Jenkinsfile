@@ -8,7 +8,7 @@ pipeline {
                 script {
                     def scannerHome = tool name: 'SonarQube Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
                 withSonarQubeEnv('SonarQube') {
-                  sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=DevSecOps -Dsonar.sources=. -Dsonar.host.url=http://172.17.0.2:9000 -Dsonar.login=a166eec5c26b59f28c359f18d759756189c8982f"
+                  sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=devSecOps -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=949df37354e36b1d782b1466459de2855e1c3013"
                 }
                 }
            }
@@ -21,7 +21,7 @@ pipeline {
            }
        }
 
-  stage('Veracode Pipeline Scan') {
+  /*stage('Veracode Pipeline Scan') {
   steps {
       script{
           def exists = fileExists 'pipeline-scan.jar'
@@ -35,7 +35,7 @@ pipeline {
 
     sh 'java -jar pipeline-scan.jar -vid "2301d001f9edd0be33e11dc05237b2c6" -vkey "f6b0d7718b4033421da833fe3a1d8bf4a222c5cf72949c1fcd4c399c8ac9435d7f7f8c213e1022c818f761981aef705a183c94f4dceec08a1188562d613a7810" -aid 600742 -fs "Very High, High, Medium, Low" -ds "Testing" -r "Jenkins-Labs" -p "PocVeracode"  -f "Archivo.zip" '
   }
-}
+}*/
 
 
 stage('CleanWorkspace') {
